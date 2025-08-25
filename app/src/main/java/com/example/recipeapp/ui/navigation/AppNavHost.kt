@@ -26,7 +26,7 @@ fun AppNavHost(
             AddRecipeScreen(paddingValues = paddingValues)
         }
         composable(Screen.Favorites.route) {
-            FavoritesScreen(paddingValues = paddingValues)
+            FavoritesScreen(paddingValues = paddingValues, navController = navController)
         }
         composable(Screen.Search.route) {
             SearchScreen(paddingValues = paddingValues, navController = navController)
