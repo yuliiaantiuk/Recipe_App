@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.recipeapp.ui.navigation.Screen
+import com.example.recipeapp.ui.components.SearchBar
 import com.example.recipeapp.ui.theme.*
 
 data class PublicRecipe(
@@ -42,7 +43,7 @@ fun SearchScreen(paddingValues: PaddingValues, navController: NavHostController)
 
     val allRecipes = remember {
         mutableStateListOf(
-            PublicRecipe(1, "Борщ", listOf("Суп"), null, likes = 12),
+            PublicRecipe(1, "Borshch", listOf("Суп"), null, likes = 12),
             PublicRecipe(2, "Сирники", listOf("Десерт", "Сніданок"), null, likes = 28),
             PublicRecipe(3, "Салат Цезар", listOf("Салат"), null, likes = 45),
             PublicRecipe(4, "Паста", listOf("Основне"), null, likes = 33)
@@ -70,13 +71,9 @@ fun SearchScreen(paddingValues: PaddingValues, navController: NavHostController)
                 .padding(horizontal = 16.dp, vertical = 12.dp)
                 .fillMaxSize()
         ) {
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Пошук", color = LabelColor.copy(alpha = 0.5f)) },
-                colors = fieldColors(),
-                shape = FieldShape
+            SearchBar(
+                query = searchQuery,
+                onQueryChange = { newQuery -> searchQuery = newQuery }
             )
 
             Spacer(modifier = Modifier.height(12.dp))

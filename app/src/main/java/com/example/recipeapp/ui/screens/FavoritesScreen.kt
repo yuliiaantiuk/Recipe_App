@@ -41,17 +41,26 @@ fun FavoritesScreen(paddingValues: PaddingValues, navController: NavHostControll
     }
 
     val filteredRecipes = allRecipes
+<<<<<<< HEAD
         .filter { recipe ->
             recipe.isFavorite &&
                     recipe.title.contains(searchQuery, ignoreCase = true) &&
                     selectedCategories.all { cat -> cat in recipe.categories }
         }
+=======
+        .filter { it.title.contains(searchQuery, ignoreCase = true) && selectedCategories.all { cat -> cat in it.categories } }
+        .sortedByDescending { it.isFavorite }
+>>>>>>> 5d6477d (Added favorites screen and added a search component)
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
+<<<<<<< HEAD
                     Text("Збережені рецепти", fontWeight = FontWeight.Bold, color = Color.White)
+=======
+                    Text("Обрані рецепти", fontWeight = FontWeight.Bold, color = Color.White)
+>>>>>>> 5d6477d (Added favorites screen and added a search component)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Teal)
             )
@@ -64,6 +73,7 @@ fun FavoritesScreen(paddingValues: PaddingValues, navController: NavHostControll
                 .padding(horizontal = 16.dp, vertical = 12.dp)
                 .fillMaxSize()
         ) {
+<<<<<<< HEAD
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -71,6 +81,11 @@ fun FavoritesScreen(paddingValues: PaddingValues, navController: NavHostControll
                 placeholder = { Text("Пошук", color = LabelColor.copy(alpha = 0.5f)) },
                 colors = fieldColors(),
                 shape = FieldShape
+=======
+            com.example.recipeapp.ui.components.SearchBar(
+                query = searchQuery,
+                onQueryChange = { newQuery -> searchQuery = newQuery }
+>>>>>>> 5d6477d (Added favorites screen and added a search component)
             )
 
             Spacer(modifier = Modifier.height(12.dp))

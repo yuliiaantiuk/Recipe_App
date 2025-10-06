@@ -15,7 +15,7 @@ data class BottomNavItem(val screen: Screen, val icon: ImageVector, val label: S
 val bottomNavItems = listOf(
     BottomNavItem(Screen.RecipeList, Icons.Default.List, "Головна"),
     BottomNavItem(Screen.AddRecipe, Icons.Default.Add, "Додати"),
-    BottomNavItem(Screen.Favorites, Icons.Default.Favorite, "Обране"),
+    BottomNavItem(Screen.Favorites, Icons.Default.Star, "Обране"),
     BottomNavItem(Screen.Search, Icons.Default.Search, "Знайти"),
     BottomNavItem(Screen.Profile, Icons.Default.Person, "Профіль")
 )

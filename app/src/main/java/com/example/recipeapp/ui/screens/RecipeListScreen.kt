@@ -78,13 +78,9 @@ fun RecipeListScreen(paddingValues: PaddingValues, navController: NavHostControl
             contentPadding = PaddingValues(bottom = 100.dp)
         ) {
             item {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Пошук", color = LabelColor.copy(alpha = 0.5f)) },
-                    colors = fieldColors(),
-                    shape = FieldShape
+                com.example.recipeapp.ui.components.SearchBar(
+                    query = searchQuery,
+                    onQueryChange = { newQuery -> searchQuery = newQuery }
                 )
             }
 
