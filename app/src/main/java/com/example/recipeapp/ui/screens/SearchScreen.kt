@@ -78,61 +78,62 @@ fun SearchScreen(paddingValues: PaddingValues, navController: NavHostController)
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            var expanded by remember { mutableStateOf(false) }
+//            var expanded by remember { mutableStateOf(false) }
 
             Column {
-                OutlinedButton(
-                    onClick = { expanded = !expanded },
-                    shape = FieldShape,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) {
-                    val label = if (selectedCategories.isEmpty())
-                        "Оберіть категорії"
-                    else
-                        selectedCategories.joinToString(", ")
-
-                    Text(label, color = Color.White)
-                }
-
-                if (expanded) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.White, FieldShape)
-                            .padding(8.dp)
-                    ) {
-                        categoryOptions.forEach { item ->
-                            val isChecked = item in selectedCategories
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 4.dp)
-                            ) {
-                                Checkbox(
-                                    checked = isChecked,
-                                    onCheckedChange = { checked ->
-                                        if (checked) selectedCategories.add(item)
-                                        else selectedCategories.remove(item)
-                                    },
-                                    colors = CheckboxDefaults.colors(checkedColor = DarkTeal)
-                                )
-                                Text(item, color = LabelColor)
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Button(
-                            onClick = { expanded = false },
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(containerColor = Teal),
-                            shape = FieldShape
-                        ) {
-                            Text("Готово", color = Color.White)
-                        }
-                    }
-                }
+                com.example.recipeapp.ui.components.CheckboxList(selectedCategories = selectedCategories)
+//                OutlinedButton(
+//                    onClick = { expanded = !expanded },
+//                    shape = FieldShape,
+//                    modifier = Modifier.fillMaxWidth(),
+//                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
+//                ) {
+//                    val label = if (selectedCategories.isEmpty())
+//                        "Оберіть категорії"
+//                    else
+//                        selectedCategories.joinToString(", ")
+//
+//                    Text(label, color = Color.White)
+//                }
+//
+//                if (expanded) {
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .background(Color.White, FieldShape)
+//                            .padding(8.dp)
+//                    ) {
+//                        categoryOptions.forEach { item ->
+//                            val isChecked = item in selectedCategories
+//                            Row(
+//                                verticalAlignment = Alignment.CenterVertically,
+//                                modifier = Modifier
+//                                    .fillMaxWidth()
+//                                    .padding(vertical = 4.dp)
+//                            ) {
+//                                Checkbox(
+//                                    checked = isChecked,
+//                                    onCheckedChange = { checked ->
+//                                        if (checked) selectedCategories.add(item)
+//                                        else selectedCategories.remove(item)
+//                                    },
+//                                    colors = CheckboxDefaults.colors(checkedColor = DarkTeal)
+//                                )
+//                                Text(item, color = LabelColor)
+//                            }
+//                        }
+//
+//                        Spacer(modifier = Modifier.height(6.dp))
+//                        Button(
+//                            onClick = { expanded = false },
+//                            modifier = Modifier.fillMaxWidth(),
+//                            colors = ButtonDefaults.buttonColors(containerColor = Teal),
+//                            shape = FieldShape
+//                        ) {
+//                            Text("Готово", color = Color.White)
+//                        }
+//                    }
+//                }
             }
 
             Spacer(modifier = Modifier.height(12.dp))

@@ -33,34 +33,25 @@ fun FavoritesScreen(paddingValues: PaddingValues, navController: NavHostControll
 
     val allRecipes = remember {
         mutableStateListOf(
-            PublicRecipe(1, "Борщ", listOf("Суп"), null, likes = 12),
+            PublicRecipe(1, "Борщ", listOf("Суп"), null, true, likes = 12),
             PublicRecipe(2, "Сирники", listOf("Десерт", "Сніданок"), null, likes = 28),
-            PublicRecipe(3, "Салат Цезар", listOf("Салат"), null, likes = 45),
+            PublicRecipe(3, "Салат Цезар", listOf("Салат"), null, true, likes = 45),
             PublicRecipe(4, "Паста", listOf("Основне"), null, likes = 33)
         )
     }
 
     val filteredRecipes = allRecipes
-<<<<<<< HEAD
         .filter { recipe ->
             recipe.isFavorite &&
                     recipe.title.contains(searchQuery, ignoreCase = true) &&
                     selectedCategories.all { cat -> cat in recipe.categories }
         }
-=======
-        .filter { it.title.contains(searchQuery, ignoreCase = true) && selectedCategories.all { cat -> cat in it.categories } }
-        .sortedByDescending { it.isFavorite }
->>>>>>> 5d6477d (Added favorites screen and added a search component)
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-<<<<<<< HEAD
-                    Text("Збережені рецепти", fontWeight = FontWeight.Bold, color = Color.White)
-=======
                     Text("Обрані рецепти", fontWeight = FontWeight.Bold, color = Color.White)
->>>>>>> 5d6477d (Added favorites screen and added a search component)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Teal)
             )
@@ -73,78 +64,69 @@ fun FavoritesScreen(paddingValues: PaddingValues, navController: NavHostControll
                 .padding(horizontal = 16.dp, vertical = 12.dp)
                 .fillMaxSize()
         ) {
-<<<<<<< HEAD
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Пошук", color = LabelColor.copy(alpha = 0.5f)) },
-                colors = fieldColors(),
-                shape = FieldShape
-=======
             com.example.recipeapp.ui.components.SearchBar(
                 query = searchQuery,
                 onQueryChange = { newQuery -> searchQuery = newQuery }
->>>>>>> 5d6477d (Added favorites screen and added a search component)
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            var expanded by remember { mutableStateOf(false) }
+//            var expanded by remember { mutableStateOf(false) }
 
             Column {
-                OutlinedButton(
-                    onClick = { expanded = !expanded },
-                    shape = FieldShape,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) {
-                    val label = if (selectedCategories.isEmpty())
-                        "Оберіть категорії"
-                    else
-                        selectedCategories.joinToString(", ")
-
-                    Text(label, color = Color.White)
-                }
-
-                if (expanded) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.White, FieldShape)
-                            .padding(8.dp)
-                    ) {
-                        categoryOptions.forEach { item ->
-                            val isChecked = item in selectedCategories
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 4.dp)
-                            ) {
-                                Checkbox(
-                                    checked = isChecked,
-                                    onCheckedChange = { checked ->
-                                        if (checked) selectedCategories.add(item)
-                                        else selectedCategories.remove(item)
-                                    },
-                                    colors = CheckboxDefaults.colors(checkedColor = DarkTeal)
-                                )
-                                Text(item, color = LabelColor)
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Button(
-                            onClick = { expanded = false },
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(containerColor = Teal),
-                            shape = FieldShape
-                        ) {
-                            Text("Готово", color = Color.White)
-                        }
-                    }
-                }
+                com.example.recipeapp.ui.components.CheckboxList(selectedCategories = selectedCategories)
+//                OutlinedButton(
+//                    onClick = { expanded = !expanded },
+//                    shape = FieldShape,
+//                    modifier = Modifier.fillMaxWidth(),
+//                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
+//                ) {
+//                    val label = if (selectedCategories.isEmpty())
+//                        "Оберіть категорії"
+//                    else
+//                        selectedCategories.joinToString(", ")
+//
+//                    Text(label, color = Color.White)
+//                }
+//
+//                if (expanded) {
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .background(Color.White, FieldShape)
+//                            .padding(8.dp)
+//                    ) {
+//                        categoryOptions.forEach { item ->
+//                            val isChecked = item in selectedCategories
+//                            Row(
+//                                verticalAlignment = Alignment.CenterVertically,
+//                                modifier = Modifier
+//                                    .fillMaxWidth()
+//                                    .padding(vertical = 4.dp)
+//                            ) {
+//                                Checkbox(
+//                                    checked = isChecked,
+//                                    onCheckedChange = { checked ->
+//                                        if (checked) selectedCategories.add(item)
+//                                        else selectedCategories.remove(item)
+//                                    },
+//                                    colors = CheckboxDefaults.colors(checkedColor = DarkTeal)
+//                                )
+//                                Text(item, color = LabelColor)
+//                            }
+//                        }
+//
+//                        Spacer(modifier = Modifier.height(6.dp))
+//                        Button(
+//                            onClick = { expanded = false },
+//                            modifier = Modifier.fillMaxWidth(),
+//                            colors = ButtonDefaults.buttonColors(containerColor = Teal),
+//                            shape = FieldShape
+//                        ) {
+//                            Text("Готово", color = Color.White)
+//                        }
+//                    }
+//                }
             }
 
             Spacer(modifier = Modifier.height(12.dp))
